@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="Blurk.cs" />
     <Compile Include="BlurkComparer.cs" />
+    <Compile Include="LineCompareResult.cs" />
     <Compile Include="ComparisonResult.cs" />
+    <Compile Include="LineTypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

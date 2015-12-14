@@ -11,7 +11,7 @@ namespace Blurk
             return new ComparisonResult(CompareStrings(expected, actual));
         }
 
-        private static IEnumerable<string> CompareStrings(string expected, string actual)
+        private static IEnumerable<LineCompareResult> CompareStrings(string expected, string actual)
         {
 
             var actualLines = actual.Replace("\r", "").Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
@@ -28,11 +28,13 @@ namespace Blurk
                 var match = expectedLines.Skip(consumedExpected).FirstOrDefault(l => l.line == line);
                 if (match == null)
                 {
-                    yield return Addition(line, lineNumberActual, "actual");
+                    yield return 
+                        new LineCompareResult(LineType.Addition, line, lineNumberActual, LineSource.Actual);
                 }
                 else if (match.index == consumedExpected)
                 {
                     consumedExpected++;
+                    yield return new LineCompareResult(LineType.Matched, line, lineNumberActual, LineSource.Actual);
                 }
                 else
                 {
@@ -40,29 +42,23 @@ namespace Blurk
                         .Skip(consumedExpected)
                         .TakeWhile(l => l.index < match.index))
                     {
-                        yield return Deletion(deletedLine.line, deletedLine.index + 1, "expected");
+                        yield return
+                            new LineCompareResult(LineType.Deleted, deletedLine.line, deletedLine.index + 1,
+                                LineSource.Expected);
                     }
                     consumedExpected = match.index + 1;
+                    yield return new LineCompareResult(LineType.Matched, line, lineNumberActual, LineSource.Actual);
                 }
                 lineNumberActual++;
             }
             foreach (var deletedLine in expectedLines
                         .Skip(consumedExpected))
             {
-                yield return Deletion(deletedLine.line, deletedLine.index + 1, "expected");
+                yield return
+                    new LineCompareResult(LineType.Deleted, deletedLine.line, deletedLine.index + 1, LineSource.Expected);
             }
 
         }
 
-        private static string Addition(string line, int lineNumber, string fileName)
-        {
-            return string.Format("+{0} (Source: {2} line {1})", line, lineNumber, fileName);
-        }
-
-
-        private static string Deletion(string line, int lineNumber, string fileName)
-        {
-            return string.Format("-{0} (Source: {2} line {1})", line, lineNumber, fileName);
-        }
     }
 }

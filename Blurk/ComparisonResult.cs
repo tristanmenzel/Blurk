@@ -6,25 +6,35 @@ namespace Blurk
 {
     public class ComparisonResult
     {
-        private readonly string[] _differences;
+        private readonly LineCompareResult[] _lineCompareResults;
 
-        public ComparisonResult(IEnumerable<string> differences)
+        public ComparisonResult(IEnumerable<LineCompareResult> lineCompareResults)
         {
-            _differences = differences.ToArray();
+            _lineCompareResults = lineCompareResults.ToArray();
         }
 
         public string[] Differences()
         {
-            return _differences;
+            return _lineCompareResults.Where(r=>r.LineType != LineType.Matched).Select(r=>(string)r).ToArray();
+        }
+
+        public string[] All()
+        {
+            return _lineCompareResults.Select(r=>(string)r).ToArray();
+        }
+
+        public LineCompareResult[] RawResults()
+        {
+            return _lineCompareResults;
         }
 
 
         public void AssertAreTheSame(Action<string> assertionFailDelegate)
         {
-            if (_differences.Any())
+            if (_lineCompareResults.Any(r => r.LineType != LineType.Matched))
             {
                 assertionFailDelegate(string.Format("Expected does not match actual: \r\n\r\n{0}",
-                    string.Join("\r\n", _differences)));
+                    string.Join("\r\n", Differences())));
             }
         }
     }
