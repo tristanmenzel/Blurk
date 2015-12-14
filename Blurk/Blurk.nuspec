@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Blurk</id>
+    <version>$version$</version>
+    <title>Blurk</title>
+    <authors>Tristan Menzel</authors>
+    <owners>Tristan Menzel</owners>
+    <projectUrl>https://github.com/tristanmenzel/Blurk</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A simple line based string comparison tool for unit testing</description>
+    <tags>Testing compare</tags>
+  </metadata>
+</package>
