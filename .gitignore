@@ -19,3 +19,4 @@ Blurk**/**/[Dd]ebug*/
 obj/
 [Rr]elease*/
 _ReSharper*/
+.vs/**
