@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Blurk
+namespace BlurkCompare
 {
     public struct LineCompareResult
     {

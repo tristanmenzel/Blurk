@@ -7,7 +7,7 @@
     <ProjectGuid>{A3C47D82-BC6E-4999-BB56-1C80561AA08A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Blurk</RootNamespace>
+    <RootNamespace>BlurkCompare</RootNamespace>
     <AssemblyName>Blurk</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

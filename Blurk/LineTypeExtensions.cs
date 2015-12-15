@@ -1,4 +1,4 @@
-﻿namespace Blurk
+﻿namespace BlurkCompare
 {
     public static class LineTypeExtensions
     {

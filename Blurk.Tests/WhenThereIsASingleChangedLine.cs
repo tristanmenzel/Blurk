@@ -3,7 +3,7 @@ using NUnit.Framework;
 using NUnit.Framework.Internal;
 using Shouldly;
 
-namespace Blurk.Tests
+namespace BlurkCompare.Tests
 {
     [TestFixture]
     public class WhenThereIsASingleChangedLine

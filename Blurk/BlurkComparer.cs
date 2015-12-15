@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Blurk
+namespace BlurkCompare
 {
     public static class BlurkComparer
     {

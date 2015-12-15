@@ -1,4 +1,4 @@
-﻿namespace Blurk
+﻿namespace BlurkCompare
 {
     public static class Blurk
     {
@@ -20,9 +20,6 @@
             {
                 return BlurkComparer.Compare(_expected, actual);
             }
-
         }
-
-      
     }
 }

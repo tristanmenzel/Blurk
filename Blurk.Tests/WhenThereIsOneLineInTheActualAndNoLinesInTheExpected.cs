@@ -2,7 +2,7 @@ using System.Linq;
 using NUnit.Framework;
 using Shouldly;
 
-namespace Blurk.Tests
+namespace BlurkCompare.Tests
 {
     [TestFixture]
     public class WhenThereIsOneLineInTheActualAndNoLinesInTheExpected

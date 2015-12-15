@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Blurk.Tests
+namespace BlurkCompare.Tests
 {
     [TestFixture]
     public class WhenTheLineEndingsAreDifferent
