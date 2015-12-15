@@ -32,3 +32,35 @@ var allLines = Blurk.Compare(Expected).To(Actual).All();
 ```cs
 var raw = Blurk.Compare(Expected).To(Actual).RawResults();
 ```
+
+## Sample output
+
+**This test...**
+```cs
+private const string Actual = @"One
+Two
+Two point five
+Three
+Five
+Five and three quarters
+Six
+Seven";
+    
+private const string Expected = @"One
+Two
+Three
+Four
+Five
+Six
+Seven";
+
+Blurk.Compare(Expected).To(Actual).AssertAreTheSame(Assert.Fail);
+```
+**...will produce this output**
+```
+Expected does not match actual: 
+
++Two point five (Source: Actual line 3)
+-Four (Source: Expected line 4)
++Five and three quarters (Source: Actual line 6)
+```
