@@ -19,7 +19,7 @@ namespace Blurk
 
         public override string ToString()
         {
-            return String.Format("{0}{1} (Source: {2} line {3}",
+            return String.Format("{0}{1} (Source: {2} line {3})",
                 LineType.GetSymbol(),
                 LineText,
                 Source,
