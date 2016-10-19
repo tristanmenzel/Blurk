@@ -1,6 +1,8 @@
 # Blurk
 A simple line based string comparison tool for unit testing
 
+[![Build status](https://ci.appveyor.com/api/projects/status/51qn88aqwojtp97u?svg=true)](https://ci.appveyor.com/project/tristanmenzel/blurk)
+
 ## Installation
 
 **Nuget**
