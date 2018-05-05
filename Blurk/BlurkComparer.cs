@@ -13,10 +13,9 @@ namespace BlurkCompare
 
         private static IEnumerable<LineCompareResult> CompareStrings(string expected, string actual)
         {
-
-            var actualLines = actual.Replace("\r", "").Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
-            var expectedLines = expected.Replace("\r", "").Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select((line, index) => new { line, index })
+            var actualLines = actual.Replace("\r", "").Split(new[] {'\n'}, StringSplitOptions.RemoveEmptyEntries);
+            var expectedLines = expected.Replace("\r", "").Split(new[] {'\n'}, StringSplitOptions.RemoveEmptyEntries)
+                .Select((line, index) => new {line, index})
                 .ToArray();
 
             int consumedExpected = 0;
@@ -28,7 +27,7 @@ namespace BlurkCompare
                 var match = expectedLines.Skip(consumedExpected).FirstOrDefault(l => l.line == line);
                 if (match == null)
                 {
-                    yield return 
+                    yield return
                         new LineCompareResult(LineType.Addition, line, lineNumberActual, LineSource.Actual);
                 }
                 else if (match.index == consumedExpected)
@@ -46,19 +45,21 @@ namespace BlurkCompare
                             new LineCompareResult(LineType.Deleted, deletedLine.line, deletedLine.index + 1,
                                 LineSource.Expected);
                     }
+
                     consumedExpected = match.index + 1;
                     yield return new LineCompareResult(LineType.Matched, line, lineNumberActual, LineSource.Actual);
                 }
+
                 lineNumberActual++;
             }
+
             foreach (var deletedLine in expectedLines
-                        .Skip(consumedExpected))
+                .Skip(consumedExpected))
             {
                 yield return
-                    new LineCompareResult(LineType.Deleted, deletedLine.line, deletedLine.index + 1, LineSource.Expected);
+                    new LineCompareResult(LineType.Deleted, deletedLine.line, deletedLine.index + 1,
+                        LineSource.Expected);
             }
-
         }
-
     }
 }

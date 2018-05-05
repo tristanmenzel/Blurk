@@ -15,12 +15,12 @@ namespace BlurkCompare
 
         public string[] Differences()
         {
-            return _lineCompareResults.Where(r=>r.LineType != LineType.Matched).Select(r=>(string)r).ToArray();
+            return _lineCompareResults.Where(r => r.LineType != LineType.Matched).Select(r => (string) r).ToArray();
         }
 
         public string[] All()
         {
-            return _lineCompareResults.Select(r=>(string)r).ToArray();
+            return _lineCompareResults.Select(r => (string) r).ToArray();
         }
 
         public LineCompareResult[] RawResults()

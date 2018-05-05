@@ -26,9 +26,9 @@ namespace BlurkCompare.Tests
         [Test]
         public void AnAssertionThatTheyAreTheSameShouldFail()
         {
-            Should.Throw<AssertionException>(() => {
-                Blurk.Compare(Expected).To(Actual).AssertAreTheSame(Assert.Fail);
-            });
+            bool didFail = false;
+            Blurk.Compare(Expected).To(Actual).AssertAreTheSame(x => didFail = true);
+            didFail.ShouldBeTrue();
         }
     }
 }
