@@ -35,4 +35,9 @@ test_script:
   - cmd: dotnet test ./blurk.tests/blurk.tests.csproj
 on_finish :
   # any cleanup in here
-deploy: off
+deploy: 
+  provider: Nuget
+  api_key: 
+    secure: kj36IlYaVvdX1uG670VTXrzhDvG57jnnbyBfXIzLilG/YC5/6pfR1NQAuXtoi531
+  skip_symbols: true
+  artifact: /.*\.nupkg/
