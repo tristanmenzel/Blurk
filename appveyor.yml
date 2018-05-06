@@ -36,7 +36,7 @@ test_script:
 on_finish :
   # any cleanup in here
 deploy: 
-  provider: Nuget
+  provider: NuGet
   api_key: 
     secure: kj36IlYaVvdX1uG670VTXrzhDvG57jnnbyBfXIzLilG/YC5/6pfR1NQAuXtoi531
   skip_symbols: true
