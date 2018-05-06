@@ -15,6 +15,7 @@ before_build:
   - cmd: dotnet restore --verbosity m
 build_script:
   # Package Blurk
+  - cmd: dotnet build ./blurk/blurk.csproj --configuration=release
   - cmd: dotnet pack ./blurk/blurk.csproj --configuration=release
 after_build:
   # For once the build has completed
