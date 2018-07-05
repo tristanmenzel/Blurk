@@ -12,6 +12,8 @@ Install-Package Blurk
 
 ## Usage
 
+### In memory
+
 **With failure assertion**
 
 ```cs
@@ -34,6 +36,30 @@ var allLines = Blurk.Compare(Expected).To(Actual).All();
 ```cs
 var raw = Blurk.Compare(Expected).To(Actual).RawResults();
 ```
+
+### Compare to file
+
+**Compare to a specific file**
+
+```cs
+Blurk.CompareFile("../../../WhenComparingToAFile.txt")
+    .To("Happy days")
+    .AssertAreTheSame(Assert.Fail);
+```
+
+**Compare to an implicitly located file**
+```cs
+[Test]
+public void ExpectTheFileToBeLoadedBasedOnClassAndMethodName()
+{
+    Blurk.CompareImplicitFile("txt") // File extension, txt is default
+        .To("Why hello there")
+        .AssertAreTheSame(Assert.Fail);
+}
+```
+
+The file will be created if it does not exist
+
 
 ## Sample output
 

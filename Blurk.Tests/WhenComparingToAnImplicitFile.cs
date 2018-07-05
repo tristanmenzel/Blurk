@@ -12,5 +12,13 @@ namespace BlurkCompare.Tests
                 .To("Why hello there")
                 .AssertAreTheSame(Assert.Fail);
         }
+        
+        [Test]
+        public void ExpectTheFileToBeLoadedBasedOnClassAndMethodNameAndSpecifiedExtension()
+        {
+            Blurk.CompareImplicitFile("js")
+                .To("alert('Why hello there');")
+                .AssertAreTheSame(Assert.Fail);
+        }
     }
 }

@@ -21,10 +21,17 @@ namespace BlurkCompare
             }
         }
 
-        public static HalfComparison CompareImplicitFile([CallerFilePath] string filePath = null,
+        public static HalfComparison CompareImplicitFile(string extension = "txt", [CallerFilePath] string filePath = null,
             [CallerMemberName] string memberName = null)
         {
-            var fileName = new Regex("\\.[a-zA-Z0-9]{1,3}$").Replace(filePath, $".{memberName}.txt");
+            var fileName = new Regex("\\.[a-zA-Z0-9]{1,3}$").Replace(filePath, $".{memberName}.{extension}");
+            if (!File.Exists(fileName))
+            {
+                using (var f = File.Create(fileName))
+                {
+                    
+                }
+            }
             return CompareFile(fileName);
         }
 
