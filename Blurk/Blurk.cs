@@ -21,18 +21,26 @@ namespace BlurkCompare
             }
         }
 
-        public static HalfComparison CompareImplicitFile(string extension = "txt", [CallerFilePath] string filePath = null,
+
+        public static HalfComparison CompareImplicitFile(string extension = "txt",
+            [CallerFilePath] string filePath = null,
             [CallerMemberName] string memberName = null)
         {
-            var fileName = new Regex("\\.[a-zA-Z0-9]{1,3}$").Replace(filePath, $".{memberName}.{extension}");
+            var fileName = GetFileName(extension, filePath, memberName);
             if (!File.Exists(fileName))
             {
                 using (var f = File.Create(fileName))
                 {
-                    
                 }
             }
+
             return CompareFile(fileName);
+        }
+
+        private static string GetFileName(string extension, string filePath, string memberName)
+        {
+            var fileName = new Regex("\\.[a-zA-Z0-9]{1,3}$").Replace(filePath, $".{memberName}.{extension}");
+            return fileName;
         }
 
         public class HalfComparison
@@ -44,8 +52,23 @@ namespace BlurkCompare
                 _expected = expected;
             }
 
-            public ComparisonResult To(string actual)
+            public ComparisonResult To(string actual,
+                bool writeActualToFile = false,
+                string extension = "txt",
+                [CallerFilePath] string filePath = null,
+                [CallerMemberName] string memberName = null
+            )
             {
+                if (writeActualToFile)
+                {
+                    var fileName = GetFileName($"actual.{extension}", filePath, memberName);
+                    using (var f = File.Open(fileName, FileMode.Create))
+                    using (var sw = new StreamWriter(f))
+                    {
+                        sw.Write(actual);
+                    }
+                }
+
                 return BlurkComparer.Compare(_expected, actual);
             }
         }

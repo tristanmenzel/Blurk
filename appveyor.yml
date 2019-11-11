@@ -1,5 +1,5 @@
-version: '2.1.{build}'
-image: Visual Studio 2017
+version: '3.0.{build}'
+image: Visual Studio 2019
 branches:
   only:
   - master
@@ -38,6 +38,6 @@ on_finish :
 deploy: 
   provider: NuGet
   api_key: 
-    secure: kj36IlYaVvdX1uG670VTXrzhDvG57jnnbyBfXIzLilG/YC5/6pfR1NQAuXtoi531
+    secure: xYCj0+2nsXc/vzyxFdHbuU2i7XsBs3es/StlTJA29zX6h2dxltU5MAuIAb5ZuNih
   skip_symbols: true
   artifact: /.*\.nupkg/
