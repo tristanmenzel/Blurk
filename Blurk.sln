@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blurk", "Blurk\Blurk.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blurk.Tests", "Blurk.Tests\Blurk.Tests.csproj", "{E42736DE-0F80-4370-AE33-7A7B10B38F68}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{50F724D0-8CE2-47D1-8AFE-AB9F3EEC784F}"
+ProjectSection(SolutionItems) = preProject
+	appveyor.yml = appveyor.yml
+	README.md = README.md
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

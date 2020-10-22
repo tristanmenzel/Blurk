@@ -7,9 +7,14 @@ namespace BlurkCompare
 {
     public static class Blurk
     {
+        public static class Settings
+        {
+            public static bool WriteActualToFile { get; set; }
+        }
+        
         public static HalfComparison Compare(string expected)
         {
-            return new HalfComparison(expected);
+            return new HalfComparison(expected, "txt");
         }
 
         public static HalfComparison CompareFile(string filePath)
@@ -17,7 +22,7 @@ namespace BlurkCompare
             using (var sr = new StreamReader(File.OpenRead(filePath)))
             {
                 var expected = sr.ReadToEnd();
-                return new HalfComparison(expected);
+                return new HalfComparison(expected, Path.GetExtension(filePath));
             }
         }
 
@@ -46,22 +51,24 @@ namespace BlurkCompare
         public class HalfComparison
         {
             private readonly string _expected;
+            private readonly string _extension;
 
-            public HalfComparison(string expected)
+            public HalfComparison(string expected, string extension)
             {
                 _expected = expected;
+                _extension = extension;
             }
 
             public ComparisonResult To(string actual,
-                bool writeActualToFile = false,
-                string extension = "txt",
+                bool? writeActualToFile = null,
+                string extension = null,
                 [CallerFilePath] string filePath = null,
                 [CallerMemberName] string memberName = null
             )
             {
-                if (writeActualToFile)
+                if (writeActualToFile ?? Settings.WriteActualToFile)
                 {
-                    var fileName = GetFileName($"actual.{extension}", filePath, memberName);
+                    var fileName = GetFileName($"actual.{extension ?? _extension}", filePath, memberName);
                     using (var f = File.Open(fileName, FileMode.Create))
                     using (var sw = new StreamWriter(f))
                     {
