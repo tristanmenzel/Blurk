@@ -22,7 +22,7 @@ namespace BlurkCompare
             using (var sr = new StreamReader(File.OpenRead(filePath)))
             {
                 var expected = sr.ReadToEnd();
-                return new HalfComparison(expected, Path.GetExtension(filePath));
+                return new HalfComparison(expected, Path.GetExtension(filePath).Substring(1));
             }
         }
 
